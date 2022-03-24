@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+<header>
+    <%- include('../partials/header'); %>
+</header>
+<main>
+    <div class="container mt-3" id="div-busHisto">
+        <div class="row justify-content-evenly">
+            <div class="col-4 ">
+                <div class="card">
+                    <div class="card-header">
+                        ¡Compra realizada con éxito!
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Muchas gracias por tu compra</h5>
+                        <p class="card-text">Esperamos que puedas disfrutar muy pronto de tu vinilo. Puedes descargar la factura pinchando en el botón de abajo.
+                        </p>
+                        <form method="POST" action="/verFactura" id="formFactura">
+                            <input type="hidden" id="inputUserHiddenFactura" name="infoUser" value="">
+                            <input type="hidden" id="inputProductosHiddenFactura" name="infoProductos" value="">
+                            <button onclick="irFactura()" class="btn btn-outline-secondary bg-dark" type="submit">Descargar factura</button>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+<script>
+    infoEnviar = '<%-info%>'
+    function irFactura() {
+        var idProductos = localStorage.getItem("idProducto")
+        
+        document.getElementById("inputUserHiddenFactura").value = infoEnviar;
+        document.getElementById("inputProductosHiddenFactura").value = idProductos;
+        document.getElementById("formFactura").submit();
+        localStorage.removeItem("idProducto");
+
+    }
+</script>
+</body>
+</html>

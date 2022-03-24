@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <script>
+            function addProducto(id_vinilo) {
+                var productos = [];
+                if (localStorage.getItem("idProducto") == "") {
+                    localStorage.setItem("idProducto", id_vinilo)
+                } else {
+                    console.log(id_vinilo)
+                    productos.push(localStorage.getItem("idProducto"));
+                    productos.push(id_vinilo);
+                    localStorage.setItem("idProducto", productos);
+                }
+            }
+
+        </script>
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+            <div class="container mt-5">
+                <h2>Vinilos insertados en la base de datos</h2>
+            </div>          
+    </main>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body>
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+
+  <main>
+    <div class="container my-5 d-flex justify-content-evenly">
+
+      <form action="/historial" method="POST" id="accesoHistorial">
+        <input type="hidden" name="email" id="emailUser" value="">
+        <button type="submit" class="btn btn-outline-secondary bg-dark" onclick="obtenerEmail()">Historial</button>
+      </form>
+
+      <form method="GET" action="/modificarPerfil">
+        <button type="submit" class="btn btn-outline-secondary bg-dark">Modificar mis datos</button>
+      </form>
+    </div>
+    <div class="container d-flex justify-content-center">
+      <h4 class="display-6">Sugerencias para ti</h4>
+    </div>
+    <div class="container my-4">
+      <div class="row justify-content-around">
+        <% for(let i=0 ; i < 4 ; i++) { %>
+          <div class="col-lg mt-3">
+            <div class="card" style="width: 18rem;">
+              <form action="/verProducto" method="POST">
+                <input type="image" class="card-img-top" src=" <%= infoVinilos[i].imgUrl %> " alt="Submit Form">
+                <input type="hidden" name="id_vinilo" value="<%= infoVinilos[i].id_vinilo %>">
+
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= infoVinilos[i].titulo %>
+                  </h5>
+                  <p class="card-text">
+                    <%= infoVinilos[i].autor %>
+                      <br>
+                      <%= infoVinilos[i].precio %>,00 €
+                  </p>
+                  <input type="button" class="btn btn-outline-secondary bg-dark" value="Añadir al carrito"
+                    onclick="addProducto('<%= infoVinilos[i].id_vinilo %>')">
+                </div>
+              </form>
+            </div>
+          </div>
+          <% } %>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+<script>
+  function addProducto(id_vinilo) {
+    var productos = [];
+    if (localStorage.getItem("idProducto") === null) {
+      localStorage.setItem("idProducto", id_vinilo)
+    } else {
+      productos.push(localStorage.getItem("idProducto"));
+      productos.push(id_vinilo);
+      localStorage.setItem("idProducto", productos);
+    }
+  }
+  function obtenerEmail() {
+    let infoUser = JSON.parse(localStorage.getItem("user"));
+    console.log(infoUser.email);
+
+    document.getElementById("emailUser").value = infoUser.email;
+    document.getElementById("accesoHistorial").submit();
+
+  }
+</script>
+
+</html>

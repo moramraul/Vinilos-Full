@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <script>
+            function addProducto(id_vinilo) {
+                var productos = [];
+                if (localStorage.getItem("idProducto") === null) {
+                    localStorage.setItem("idProducto", id_vinilo)
+                } else {
+                    productos.push(localStorage.getItem("idProducto"));
+                    productos.push(id_vinilo);
+                    localStorage.setItem("idProducto", productos);
+                }
+            }
+
+        </script>
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div class="container mt-5">
+            
+                <% for(let i=0 ; i < infoVinilos.length ; i++) { %>
+                  <br>
+                <div class="row justify-content-around">      
+                <h2> <%= infoVinilos[i][infoVinilos[i].length-1] %> </h2>
+                <br>
+                <% for(let j=0 ; j < infoVinilos[i].length-1; j++) { %>
+                    <div class="col-lg mt-3">
+                            <div class="card" style="width: 18rem;">
+                                <form action="/verProducto" method="POST">
+                                    <input type="image" class="card-img-top" src=" <%= infoVinilos[i][j].imgUrl %> "
+                                        alt="Submit Form">
+                                    <input type="hidden" name="id_vinilo" value="<%= infoVinilos[i][j].id_vinilo %>">
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= infoVinilos[i][j].titulo %>
+                                        </h5>
+                                        <p class="card-text">
+                                            <%= infoVinilos[i][j].autor %>
+                                                <br>
+                                                <%= infoVinilos[i][j].precio %>,00 €
+                                        </p>
+                                        <input type="button" class="btn btn-outline-secondary bg-dark" value="Añadir al carrito" onclick="addProducto('<%= infoVinilos[i][j].id_vinilo %>')">
+                                           
+                            
+                                    </div>
+                                </form>
+
+                            </div>
+                            </div>
+                            
+                            <% } %>
+                    
+                    </div>
+                <% } %>
+            
+        </div>
+    </main>
+    
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

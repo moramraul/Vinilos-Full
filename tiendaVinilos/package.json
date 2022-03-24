@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "inspector": "^0.5.0",
+    "jest": "^27.5.1",
+    "jsdoc": "^3.6.10",
+    "mongodb": "^4.4.0",
+    "mongoose": "^6.2.2",
+    "mongoose-sequence": "^5.3.1",
+    "nodemailer": "^6.7.2",
+    "pdfkit": "^0.13.0",
+    "puppeteer": "^13.3.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "doc": "jsdoc -c jsdoc.json"
+  },
+  "name": "tiendavinilos",
+  "description": "enlaces bootstrap",
+  "version": "1.0.0",
+  "main": "scrapper.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gcataladordal/tiendaVinilos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gcataladordal/tiendaVinilos/issues"
+  },
+  "homepage": "https://github.com/gcataladordal/tiendaVinilos#readme"
+}

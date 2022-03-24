@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <script>
+            function addProducto(id_vinilo) {
+                var productos = [];
+                if (localStorage.getItem("idProducto") === null) {
+                    localStorage.setItem("idProducto", id_vinilo)
+                } else {
+                    productos.push(localStorage.getItem("idProducto"));
+                    productos.push(id_vinilo);
+                    localStorage.setItem("idProducto", productos);
+                }
+            }
+
+        </script>
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <% if (infoVinilos2[0] == undefined) { %>
+            <div class="container mt-5">
+                <h2>El disco que busca no existe o no está disponible</h2>
+            </div>
+            <% } %>
+        <% if (infoVinilos2[0] != undefined) { %>
+        <div class="container mt-5">
+            <div class="row justify-content-around">
+                <div class="col-lg mt-3">
+                    <div class="card" style="width: 18rem;">
+                        <form action="/verProducto" method="POST">
+                            <input type="image" class="card-img-top" src=" <%= infoVinilos2[0].imgUrl %> "
+                                alt="Submit Form">
+                            <input type="hidden" name="id_vinilo" value="<%= infoVinilos2[0].id_vinilo %>">
+
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= infoVinilos2[0].titulo %>
+                                </h5>
+                                <p class="card-text">
+                                    <%= infoVinilos2[0].autor %>
+                                        <br>
+                                        <%= infoVinilos2[0].precio %>,00 €
+                                </p>
+                                <input type="button" class="btn btn-outline-secondary bg-dark" value="Añadir al carrito"
+                                    onclick="addProducto('<%= infoVinilos2[0].id_vinilo %>')">
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <% } %>
+    </main>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

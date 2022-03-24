@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+
+<main>
+<br>
+<br>
+<br>
+<% if (infoProducto2[0] != undefined) {console.log(infoProducto2[0]); %>
+    <div class="container">
+        <div class="row align-items-center justify-content-center ">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="/tienda" type="button" class="btn btn-dark">Volver a la tienda</a>
+            </div> 
+            <div class="col-md-auto mx-auto">
+                <img src=" <%= infoProducto2[0].imgUrl %>" width="500" height="500">
+            </div>
+            <div class="col-md-auto  mx-auto">
+                <h1 class="display-2"><%= infoProducto2[0].titulo %></h1> 
+                <h3>Autor: <%= infoProducto2[0].autor %></h3>
+                <h3>Género: <%= infoProducto2[0].genero %></h3>
+                <h3>Año de lanzamiento: <%= infoProducto2[0].ano %></h3>
+                <h3>Numero de Discos: <%= infoProducto2[0].numDisco %></h3>
+                <h3>Precio: <%= infoProducto2[0].precio %>€</h3>
+                <br>
+                <br>
+                <input type="button" class="btn btn-outline-secondary bg-dark" value="Añadir al carrito" onclick="addProducto('<%= infoProducto2[0].id_viniloScrap %>')">
+            </div>
+        </div>
+    </div>
+<% } %>
+    <% if (infoProducto[0] != undefined) {console.log(infoProducto[0]); %>
+    <div class="container">
+        <div class="row align-items-center justify-content-center ">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="/tienda" type="button" class="btn btn-dark">Volver a la tienda</a>
+            </div> 
+            <div class="col-md-auto mx-auto">
+                <img src=" <%= infoProducto[0].imgUrl %>" width="500" height="500">
+            </div>
+            <div class="col-md-auto  mx-auto">
+                <h1 class="display-2"><%= infoProducto[0].titulo %></h1> 
+                <h3>Autor: <%= infoProducto[0].autor %></h3>
+                <h3>Género: <%= infoProducto[0].genero %></h3>
+                <h3>Año de lanzamiento: <%= infoProducto[0].ano %></h3>
+                <h3>Numero de Discos: <%= infoProducto[0].numDisco %></h3>
+                <h3>Precio: <%= infoProducto[0].precio %>,00</h3>
+                <br>
+                <br>
+                <input type="button" class="btn btn-outline-secondary bg-dark" value="Añadir al carrito" onclick="addProducto('<%= infoProducto[0].id_vinilo %>')">
+            </div>
+        </div>
+    </div>
+    <% } %>
+
+<br>
+<br>
+<br>
+   
+</main>
+
+
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+<script>
+    function addProducto(id_vinilo) {
+        var productos = [];
+        if (localStorage.getItem("idProducto") === null) {
+            localStorage.setItem("idProducto", id_vinilo)
+        } else {
+            productos.push(localStorage.getItem("idProducto"));
+            productos.push(id_vinilo);
+            localStorage.setItem("idProducto", productos);
+        }
+    }
+
+</script>
+</body>
+</html>

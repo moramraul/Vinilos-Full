@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div class="container">
+            <form action="/updateUser" method="POST" id="modUser">
+                <input type="hidden" id="modificarDatos" name="data" value="">
+                <!-- Modifica Datos -->
+                <h5 class="display-6 d-flex justify-content-center">Modifica tus datos</h5>
+
+                <!--  Nombre -->
+                <div class="input-group input-group-sm mb-2">
+                    <label for="nombre" class="input-group-text">Nombre</label>
+                    <input type="text" class="form-control" placeholder="Ej: Juan" name="nombre" id="nombre"><br>
+                </div>
+                <span></span>
+                <!--   Apellidos -->
+
+                <div class="input-group input-group-sm mb-2">
+                    <label for="apellidos" class="input-group-text">Apellidos</label>
+                    <input type="text" class="form-control" placeholder="Ej: Fernández Gómez" name="apellidos"
+                        id="apellidos"><br>
+                </div>
+                <span></span>
+                <!--  Email -->
+
+                <div class="input-group input-group-sm mb-2">
+                    <label for="email" class="input-group-text">Email</label>
+                    <input type="text" class="form-control" placeholder="Ej: Ana@hotmail.com" name="email"
+                        id="emailReg"><br>
+                </div>
+                <span></span>
+                <!--  Password -->
+
+                <div class="input-group input-group-sm mb-2">
+                    <label for="password" class="input-group-text">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password"
+                        id="password1"><br>
+                </div>
+                <span></span>
+                <!--  Repetir Password -->
+
+                <div class="input-group input-group-sm mb-2">
+                    <label for="password2" class="input-group-text">Repetir Password</label>
+                    <input type="password" class="form-control" placeholder="Confirmar Password" name="password2"
+                        id="password2"><br>
+                </div>
+                <span></span> <span></span>
+                <!--  DNI -->
+
+                <div class="input-group input-group-sm mb-2 ">
+                    <label for="dni" class="input-group-text">DNI</label>
+                    <input type="text" class="form-control" placeholder="Ej: 510698745-X" name="dni" id="dni"
+                        aria-describedby="nameHelp">
+                </div>
+                <span></span>
+
+                <!--  Teléfono -->
+
+                <div class="input-group input-group-sm mb-2 ">
+                    <label for="tlf" class="input-group-text">Teléfono</label>
+                    <input type="text" class="form-control" placeholder="Ej: 695403647" name="telefono" id="tlf"
+                        aria-describedby="nameHelp">
+                </div>
+                <span></span>
+
+                <!--  Dirección -->
+
+                <div class="input-group input-group-sm mb-2 ">
+                    <label for="direccion" class="input-group-text">Dirección</label>
+                    <input type="text" class="form-control" placeholder="Ej: C/ Paco de Lucia nº5" name="direccion"
+                        id="direccion" aria-describedby="nameHelp">
+                </div>
+                <span></span>
+
+                <!--  CP -->
+
+                <div class="input-group input-group-sm mb-2 ">
+                    <label for="cp" class="input-group-text">Código Postal</label>
+                    <input type="text" class="form-control" placeholder="Ej: 28033" name="cp" id="cp"
+                        aria-describedby="nameHelp">
+                </div>
+                <span></span>
+
+                <!--  Población-->
+
+                <div class="input-group input-group-sm mb-2 ">
+                    <label for="poblacion" class="input-group-text">Población</label>
+                    <input type="text" class="form-control" placeholder="Ej: Sevilla" name="poblacion" id="poblacion"
+                        aria-describedby="nameHelp">
+                </div>
+                <span></span>
+
+                <div class="mb-2">
+                    <button class="btn btn-outline-secondary bg-dark" type="submit" id="btRegister"
+                       onclick="modData()">Modificar</button>
+                   
+                </div>
+            </form>
+        </div>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+<script>
+    function modData() {
+        var modifyDatos = localStorage.getItem("user");
+        console.log(modifyDatos);
+        document.getElementById("modificarDatos").value = modifyDatos;
+        document.getElementById("btRegister").submit();
+    }
+</script>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+
+<main>
+    <br>
+        <div id="carritoDiv" class="container"> 
+            <h1 id="h1Carrito">Resumen del pedido:</h1>
+            <br>
+            <div class="container">
+
+                <table id="tablaCarrito" class="table align-middle table-dark table-hover ">
+                    <thead>
+                        <tr>
+                            <th class="col-1" scope="col">
+                                <h3>Nº</h3>
+                            </th>
+                            <th class="col-2 text-center" scope="col">
+                                <h3>Portada</h3>
+                            </th>
+                            <th class="col-2 text-center" scope="col">
+                                <h3>Título</h3>
+                            </th>
+                            <th class="col-2 text-center" scope="col">
+                                <h3>Precio</h3>
+                            </th>
+                            <th class="col-1 text-center" scope="col">
+                                <h3>Eliminar</h3>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0 ; i < infoProductos.length - 1 ; i++) { %>
+                        <tr>
+                            <th scope="row">
+                                <h4><%= i + 1 %></h4>
+                            </th>
+                            <td class="text-center"><img
+                                    src="<%= infoProductos[i][0].imgUrl %>"
+                                    width="150" height="150"></td>
+                            <td class="text-center">
+                                <h4> <%= infoProductos[i][0].titulo %></h4>
+                            </td>
+                            <td class="text-center">
+                                <h4><%= infoProductos[i][0].precio %>,00 €</h4>
+                            </td>
+                            <td class="text-center"><a href="/carrito"> <img src="https://raw.githubusercontent.com/lyvegama/imagenesVinilos/main/disenio/otras/eliminar.png" width="25"
+                                        height="25"></a></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-center"><h4>Total</h4></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center"><h4> <%= infoProductos[infoProductos.length-1] %>,00 € </h4></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="container">
+            <div class="row">
+                <div class="d-grid gap-2 d-md-flex ">
+                    <button class="me-auto btn btn-outline-secondary bg-dark btn-lg" onclick=vaciarCarrito()>Vaciar Carrito</button>
+                    <form action="/carritoConfirmado" method="POST" id="formCompra">
+                        <input type="hidden" name="idsCompra" id="hiddenInputProducto" value="">
+                        <input type="hidden" name="userInfo" id="hiddenInputUser" value="">
+                        <button type="submit" onclick="confirmarCompra()" class="btn btn-outline-secondary bg-dark ms-auto btn-lg">Confirmar Compra</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+</main>
+
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+<script>
+    function vaciarCarrito() {
+        localStorage.removeItem("idProducto");
+        document.getElementById("tablaCarrito").remove();
+        document.getElementById("h1Carrito").remove();
+        var divCarrito = document.getElementById("carritoDiv");
+        var nuevoDiv = document.createElement("div");
+        nuevoDiv.setAttribute("class", "alert alert-dark");
+        nuevoDiv.setAttribute("role", "alert");
+        var textoDiv = document.createTextNode("Carrito vaciado correctamente")
+        nuevoDiv.appendChild(textoDiv);
+        divCarrito.appendChild(nuevoDiv);
+    }
+    function confirmarCompra(){
+        var carritoRecuperado = localStorage.getItem("idProducto");
+        var userRecuperado = localStorage.getItem("user")
+        document.getElementById("hiddenInputProducto").value = carritoRecuperado;
+        document.getElementById("hiddenInputUser").value = userRecuperado;
+        document.getElementById("formCompra").submit();
+    }
+</script>
+
+</body>
+</html>

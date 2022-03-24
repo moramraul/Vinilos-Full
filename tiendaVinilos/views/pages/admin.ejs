@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <script>
+            let name = ('<%-info%>');
+            // console.log(name);
+            localStorage.setItem("user", name);
+            let admin = '<%-inicio%>'
+            // console.log(admin);
+        </script>
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <div class="alert alert-success" role="alert" id="inserccionDisco">Insercción correcta</div>
+    <script>
+      if (admin == "inicio") {
+            document.getElementById("inserccionDisco").style.display = "none";
+        // document.getElementsByClassName("alert-danger")[0].style.display = "none";
+      }
+    //   if (admin == "inicio") {
+    //         document.getElementById("inserccionDisco").style.display = "none";
+    //     // document.getElementsByClassName("alert-danger")[0].style.display = "none";
+    //   }
+    </script>
+    <main>
+        <!-- ! FORMULARIO PARA AÑADIR, BORRAR E INSERTAR SCRAPPEO DEL ADMIN -->
+
+        <div class="container">
+            <br>
+            <h4 class="text-center"> Página del administrador</h4>
+            <br>
+        </div>
+        <div class="container mt-3" id="div-register">
+            <div class="row justify-content-evenly">
+
+                <!-- /addDisco:  titulo autor genero ano  numDIsco precio imgUrl-->
+
+                <!--! ***INSERTAR VINILOS ****-->
+                <div class="col-4 ">
+                    <form action="/addDisco" method="POST" id="fmAdminInsert">
+                        <input type="hidden" id="insertarInfo"value="" name="infoUser">
+                        <h5>Insertar vinilo</h5>
+
+                        <!-- ! *** TÍTULO ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="titulo" class="input-group-text">Título</label>
+                            <input type="text" class="form-control" placeholder="" name="titulo" id="titulo"
+                                required><br>
+                        </div>
+                        <span></span>
+
+                        <!--! *** AUTOR ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="autor" class="input-group-text">Autor</label>
+                            <input type="text" class="form-control" placeholder="" name="autor" id="autor" required><br>
+                        </div>
+                        <span></span>
+                        <!--! *** GÉNERO***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="genero" class="input-group-text">Género</label>
+                            <input type="text" class="form-control" placeholder="" name="genero" id="genero"
+                                required><br>
+                        </div>
+                        <span></span>
+                        <!--! *** AÑO ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="ano" class="input-group-text">Año</label>
+                            <input type="text" class="form-control" placeholder="" name="ano" id="ano" required><br>
+                        </div>
+                        <span></span> <span></span>
+                        <!--! *** NÚMERO ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="numDisco" class="input-group-text">Número</label>
+                            <input type="number" class="form-control" placeholder="" name="numDisco" id="numDisco"
+                                aria-describedby="numDisco" required>
+                        </div>
+                        <span></span>
+
+
+                        <!--! *** PRECIO ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="precio" class="input-group-text">Precio</label>
+                            <input type="number" class="form-control" placeholder="" name="precio" id="precio"
+                                aria-describedby="precio" required>
+                        </div>
+                        <span></span>
+
+                        <!--! *** IMG URL ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="imgUrl" class="input-group-text">ImgUrl</label>
+                            <input type="text" class="form-control" placeholder="" name="imgUrl" id="imgUrl"
+                                aria-describedby="imgUrl" required>
+                        </div>
+                        <span></span>
+
+                        <!-- BOTÓN INSERTAR -->
+                        <div class="mb-2">
+                            <button class="btn btn-outline-secondary bg-dark" type="submit"
+                                id="btInsertarVinilo">Insertar nuevo vinilo</button>
+                        </div>
+                    </form>
+                </div>
+<!-- <script>
+     function infoUser() {
+        var infoAdmin = localStorage.getItem("user");
+        console.log(JSON.parse(infoAdmin)); 
+        document.getElementById("insertarInfo").value = infoAdmin;
+        document.getElementById("fmAdminInsert").submit();
+    }
+
+</script> -->
+
+                <!--! ***MODIFICAR VINILOS ****-->
+
+                <div class="col-4 ">
+                    <form action="/updateDisco" method="POST" id="fmAdminMdf">
+                        <h5>Modificar vinilo</h5>
+
+
+                        <!-- ! *** SELECCIONA TITULO DISCO MODIFICAR ***-->
+
+                        <input type="hidden" class="form-control" placeholder="" name="nombreSelect" value=""
+                            id="mdfselect">
+                        <div class="input-group input-group-sm mb-2">
+                            <input type="hidden" name="id_vinilo" value="<%= infoDisco %>" id="infoTodo"><br>
+                            <select class="form-control" id="selection">
+
+                                <% for(let i=0 ; i < infoDisco.length ; i++) { %>
+                                    <option>
+                                        <%=infoDisco[i].titulo%>
+                                    </option>
+                                    <% } %>
+                            </select>
+                            <script>
+
+                                const element = document.getElementById("selection");
+                                element.addEventListener("blur", recogertitulo);
+
+                                function recogertitulo() {
+                                    var category = document.getElementById("selection").options[document.getElementById("selection").selectedIndex].value;
+                                    document.getElementById("mdfselect").value = category;
+                                    console.log(category);
+                                    let todoDisco = document.getElementById("infoTodo").value;
+                                }
+                            </script>
+                        </div>
+                        <span></span>
+                        <!-- ! *** TÍTULO ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="titulo" class="input-group-text">Título</label>
+                            <input type="text" class="form-control" placeholder="" name="titulo" id="mdfTitulo"><br>
+                        </div>
+                        <span></span>
+                        <!--! *** AUTOR ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="autor" class="input-group-text">Autor</label>
+                            <input type="text" class="form-control" placeholder="" name="autor" id="mdfAutor"><br>
+                        </div>
+                        <span></span>
+                        <!--! *** GÉNERO***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="genero" class="input-group-text">Género</label>
+                            <input type="text" class="form-control" placeholder="" name="genero" id="mdfGenero"><br>
+                        </div>
+                        <span></span>
+                        <!--! *** AÑO ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="ano" class="input-group-text">Año</label>
+                            <input type="text" class="form-control" placeholder="" name="ano" id="mdfAnio"><br>
+                        </div>
+                        <span></span> <span></span>
+                        <!--! *** NÚMERO ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="numDisco" class="input-group-text">Número</label>
+                            <input type="text" class="form-control" placeholder="" name="numDisco" id="mdfnumDisco">
+                        </div>
+                        <span></span>
+
+
+                        <!--! *** PRECIO ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="precio" class="input-group-text">Precio</label>
+                            <input type="number" class="form-control" placeholder="" name="precio" id="mdfPrecio"
+                                aria-describedby="precio">
+                        </div>
+                        <span></span>
+
+                        <!--! *** IMG URL ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="imgUrl" class="input-group-text">ImgUrl</label>
+                            <input type="text" class="form-control" placeholder="" name="imgUrl" id="mdfImgUrl"
+                                aria-describedby="imgUrl">
+                        </div>
+                        <span></span>
+
+                        <!--! BOTÓN MODIFICAR -->
+                        <div class="mb-2">
+                            <button class="btn btn-outline-secondary bg-dark" type="submit"
+                                id="btInsertarVinilo">Modificar un vinilo</button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <!--! BORRAR -->
+                <div class="col-4 ">
+                    <form action="/deleteDisco" method="POST" id="fmAdminBorrar">
+
+                        <h5>Borrar vinilo</h5>
+                        <!--! *** POR NOMBRE BORRAR ***-->
+                        <div class="input-group input-group-sm mb-2">
+                            <input type="hidden" class="form-control" placeholder="" name="nombreSelect" value=""
+                                id="deteleSelect"><br>
+
+                            <select class="form-control" id="selection2">
+
+                                <% for(let i=0 ; i < infoDisco.length ; i++) { %>
+                                    <option>
+                                        <%=infoDisco[i].titulo%>
+                                    </option>
+                                    <% } %>
+                            </select>
+                            <script>
+
+                                const element2 = document.getElementById("selection2");
+                                element2.addEventListener("blur", recogertitulo);
+
+                                function recogertitulo() {
+                                    var category2 = document.getElementById("selection2").options[document.getElementById("selection2").selectedIndex].value;
+                                    document.getElementById("deteleSelect").value = category2;
+                                    console.log(category2);
+                                    let todoDisco2 = document.getElementById("infoTodo").value;
+                                }
+                            </script>
+                        </div>
+                        <span></span>
+
+                        <span></span>
+                        <!-- botón de borrar vinilo -->
+                        <div class="mb-2">
+                            <input class="btn btn-outline-secondary bg-dark" type="submit" id="btBorrarVinilo"
+                                value="Borrar vinilo">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- INSERTAR EL SCRAPPEO POR NÚMERO -->
+
+                <div class="col-15">
+                    <form action="/scrapAdmin" method="POST" id="fmAdminScrappeo">
+
+                        <h5>Insertar vinilos auto</h5>
+                        <h7>¿Cuántos quieres insertar?</h7>
+                        <!--! *** DISCO BORRAR ***-->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1">
+                            <label class="form-check-label" for="inlineRadio1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2">
+                            <label class="form-check-label" for="inlineRadio2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                                value="option3">
+                            <label class="form-check-label" for="inlineRadio3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+                                value="option4">
+                            <label class="form-check-label" for="inlineRadio4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5"
+                                value="option5">
+                            <label class="form-check-label" for="inlineRadio1">5</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio10"
+                                value="option10">
+                            <label class="form-check-label" for="inlineRadio2">10</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio15"
+                                value="option15">
+                            <label class="form-check-label" for="inlineRadio2">15</label>
+                        </div>
+                        <!-- botón insertar scrappeo -->
+                        <input type="hidden" class="form-control" placeholder="" name="insertScrap" value=""
+                            id="hiddenScrap"><br>
+                        <div class="mb-2">
+                            <input class="btn btn-outline-secondary bg-dark" onclick="botonScrap()" type="submit" id="btScrappeoVinilo"
+                                value="Insertar vinilo Auto">
+                            <script>
+                                async function botonScrap() {
+                                    let numeroCheckado = await comprobarCheck();
+                                    document.getElementById("hiddenScrap").value = numeroCheckado;
+                                    document.getElementById("fmAdminScrappeo").submit()
+                                }
+
+                                function comprobarCheck() {
+                                    var todosCheck = document.getElementsByClassName("form-check-input")
+                                    var numeroCheckado;
+                                    for (let i = 0; i < todosCheck.length; i++) {
+                                        if (todosCheck[i].checked) { numeroCheckado = todosCheck[i].value }
+                                    }
+                                    console.log(numeroCheckado)
+                                    return numeroCheckado
+                                }
+                            </script>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>
