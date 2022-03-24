@@ -1,0 +1,169 @@
+[{
+  "_id": {
+    "$oid": "61fcea54bdb891e9df60da77"
+  },
+  "titulo": "The Best Of James Brown",
+  "autor": "James Brown",
+  "genero": "Funk",
+  "ano": "1981",
+  "numDisco": "2",
+  "precio": 15,
+  "imgUrl": "https://i.discogs.com/vCJhbUUeWdiVQ2BTn6cJurasl3re9cGUK6mV67dnWcs/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWltYWdlcy9SLTIw/ODcwMjQtMTUxMDg1/ODk4NC02NjcwLmpw/ZWc.jpeg",
+  "id_vinilo": 1
+},{
+  "_id": {
+    "$oid": "61fcec95bbcb412ed40f3c56"
+  },
+  "titulo": "Kool And The Gang",
+  "autor": "Kool And The Gang",
+  "genero": "Funk",
+  "ano": "1969",
+  "numDisco": "1",
+  "precio": 23,
+  "imgUrl": "https://i.scdn.co/image/ab67616d0000b2739478f74daa73c832b5898e27",
+  "id_vinilo": 2
+},{
+  "_id": {
+    "$oid": "61fcede675f65cc9b34a506f"
+  },
+  "titulo": "ABC",
+  "autor": "Jackson 5",
+  "genero": "Funk",
+  "ano": "1970",
+  "numDisco": "2",
+  "precio": 32,
+  "imgUrl": "https://m.media-amazon.com/images/I/71cBrakTspL._SL1200_.jpg",
+  "id_vinilo": 3
+},{
+  "_id": {
+    "$oid": "61fcee58406232588faf19b8"
+  },
+  "titulo": "Ready To Die",
+  "autor": "The Notorious B.I.G.",
+  "genero": "Hip Hop",
+  "ano": "1994",
+  "numDisco": "4",
+  "precio": 54,
+  "imgUrl": "https://i.discogs.com/CpsB0b_yMIB8SyxH41SkXWvX-18GCHXDqyWFlhjz3qQ/rs:fit/g:sm/q:90/h:593/w:600/czM6Ly9kaXNjb2dz/LWltYWdlcy9SLTg0/ODkyMDktMTQ2MjYy/NzU5MC03NTQwLmpw/ZWc.jpeg",
+  "id_vinilo": 4
+},{
+  "_id": {
+    "$oid": "61fcf02da8c70b0721ffae6d"
+  },
+  "titulo": "The Dark Side Of The Moon",
+  "autor": "Pink Floyd",
+  "genero": "Rock",
+  "ano": "1973",
+  "numDisco": "2",
+  "precio": 173,
+  "imgUrl": "https://cdn.grupoelcorteingles.es/SGFM/dctm/MEDIA03/202003/11/00105111151543____3__1200x1200.jpg",
+  "id_vinilo": 5
+},{
+  "_id": {
+    "$oid": "61fcf0ca13fc552a83df2eb6"
+  },
+  "titulo": "Doggystyle",
+  "autor": "Snoop Dogg",
+  "genero": "Hip Hop",
+  "ano": "1993",
+  "numDisco": "2",
+  "precio": 47,
+  "imgUrl": "https://i.ebayimg.com/images/g/yKAAAOSwrAJhH31p/s-l640.jpg",
+  "id_vinilo": 6
+},{
+  "_id": {
+    "$oid": "61fcf12cdf96f7ce1754e38c"
+  },
+  "titulo": "All Eyez On Me",
+  "autor": "2Pac",
+  "genero": "Hip Hop",
+  "ano": "1996",
+  "numDisco": "4",
+  "precio": 53,
+  "imgUrl": "https://m.media-amazon.com/images/I/81y8N1Dq+DL._SL1500_.jpg",
+  "id_vinilo": 7
+},{
+  "_id": {
+    "$oid": "61fcf1aa7bc6fea5a84a1c2a"
+  },
+  "titulo": "Nevermind",
+  "autor": "Nirvana",
+  "genero": "Rock",
+  "ano": "1991",
+  "numDisco": "2",
+  "precio": 63,
+  "imgUrl": "http://community.fansshare.com/pic52/w/nirvana--film-/1200/13066_nirvana_nevermind_album_cover_lp_cd.jpg",
+  "id_vinilo": 8
+},{
+  "_id": {
+    "$oid": "61fcf2d601bc6b122aa6f95e"
+  },
+  "titulo": "My Feeling For The Blues",
+  "autor": "Freddie King",
+  "genero": "Blues",
+  "ano": "1970",
+  "numDisco": "2",
+  "precio": 44,
+  "imgUrl": "https://www.rhino.com/sites/g/files/g2000012691/files/styles/square/public/products/603497985319.jpg?itok=vIzGvsr6",
+  "id_vinilo": 10
+},{
+  "_id": {
+    "$oid": "61fcf33b317439da9cf29384"
+  },
+  "titulo": "What'd I Say",
+  "autor": "Ray Charles",
+  "genero": "Blues",
+  "ano": "1959",
+  "numDisco": "2",
+  "precio": 12,
+  "imgUrl": "https://i.discogs.com/NMvqsqG1kCSd0QbMY_D83hYaA7iOn-L7smyvYbVWWoU/rs:fit/g:sm/q:90/h:595/w:595/czM6Ly9kaXNjb2dz/LWltYWdlcy9SLTUy/OTEwNjAtMTU3MDM3/OTY4OS0yODUxLmpw/ZWc.jpeg",
+  "id_vinilo": 11
+},{
+  "_id": {
+    "$oid": "61fcf3d7ef2b799269ad1fc0"
+  },
+  "titulo": "Singin' The Blues",
+  "autor": "B.B. King",
+  "genero": "Blues",
+  "ano": "1957",
+  "numDisco": "2",
+  "precio": 19,
+  "imgUrl": "https://img14.shop-pro.jp/PA01306/842/product/94112685.jpg?cmsp_timestamp=20151105192507",
+  "id_vinilo": 12
+},{
+  "_id": {
+    "$oid": "61fcf44e205e82c7ef11a1ae"
+  },
+  "titulo": "King Louis",
+  "autor": "Louis Armstrong",
+  "genero": "Jazz",
+  "ano": "1940",
+  "numDisco": "4",
+  "precio": 26,
+  "imgUrl": "https://farm5.static.flickr.com/4698/39446428085_c4a4c40062.jpg",
+  "id_vinilo": 13
+},{
+  "_id": {
+    "$oid": "61fcf5752541dd9ea92044a5"
+  },
+  "titulo": "Masterpieces by Ellington",
+  "autor": "Duke Ellington",
+  "genero": "Jazz",
+  "ano": "1951",
+  "numDisco": "2",
+  "precio": 34,
+  "imgUrl": "https://e.snmc.io/i/600/s/dbab66164973789ca334fcb454753351/5642810/duke-ellington-and-his-orchestra-masterpieces-by-ellington-Cover-Art.jpg",
+  "id_vinilo": 14
+},{
+  "_id": {
+    "$oid": "61fcf5f2fb0b14397ea0384c"
+  },
+  "titulo": "A Night At The Opera",
+  "autor": "Queen",
+  "genero": "Rock",
+  "ano": "1975",
+  "numDisco": "2",
+  "precio": 44,
+  "imgUrl": "https://dvfnvgxhycwzf.cloudfront.net/media/SharedImage/imageFull/.f3C7LS6U/SharedImage-53601.jpg?t=96658919e620ce1dee51",
+  "id_vinilo": 15
+}]
