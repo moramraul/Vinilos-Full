@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+
+    <main>
+        <!-- ! FORMULARIOS DE LOGIN Y REGISTER -->
+
+        <div class="container">
+            <br>
+            <h4 class="text-center">Escribe los detalles de envío</h4>
+            <br>
+        </div>
+        <div class="container mt-3" id="div-datosEnvio">
+            <div class="row justify-content-evenly">
+                <div class="col-4 ">
+                    <form action="/submitDatosEnvio" method="POST" id="formDatosEnvio"> <!--! ***DETALLES DE ENVÍO ****-->
+
+                        <!--! *** Nombre ***-->
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="nombre" class="input-group-text">Nombre</label>
+                            <input type="text" class="form-control" placeholder="Ej: Juan" name="nombre" id="nombre"
+                                required><br>
+                        </div>
+                        <span></span>
+                        <!-- ! *** Apellidos ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="apellidos" class="input-group-text">Apellidos</label>
+                            <input type="text" class="form-control" placeholder="Ej: Fernández Gómez" name="apellidos"
+                                id="apellidos" required><br>
+                        </div>
+                        <span></span>
+                        <!--! *** Email ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="email" class="input-group-text">Email</label>
+                            <input type="text" class="form-control" placeholder="Ej: Ana@hotmail.com" name="email"
+                                id="emailReg" required><br>
+                        </div>
+                        <span></span>
+
+                        <!--! *** DNI ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="dni" class="input-group-text">DNI</label>
+                            <input type="text" class="form-control" placeholder="Ej: 510698745-X" name="dni" id="dni"
+                                aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <!--! *** Teléfono ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="tlf" class="input-group-text">Teléfono</label>
+                            <input type="text" class="form-control" placeholder="Ej: 695403647" name="tlf" id="tlf"
+                                aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <!--! *** Dirección ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="direccion" class="input-group-text">Dirección</label>
+                            <input type="text" class="form-control" placeholder="Ej: C/ Paco de Lucia nº5"
+                                name="direccion" id="direccion" aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <!--! *** CP ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="cp" class="input-group-text">Código Postal</label>
+                            <input type="text" class="form-control" placeholder="Ej: 28033" name="cp" id="cp"
+                                aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <!--! *** Población ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="poblacion" class="input-group-text">Población</label>
+                            <input type="text" class="form-control" placeholder="Ej: Sevilla" name="poblacion"
+                                id="poblacion" aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <!-- Area de texto para que escriba al de correos -->
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Entregas personalizadas. Comenta
+                                cómo quieres que el cartero te entregue tu paquete.</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+
+                        <input type="hidden" id="inputProductosHiddenDatosEnvio" name="idsProductos" value="">
+
+                        <div class="mb-2">
+                            <button class="btn btn-outline-secondary bg-dark" onclick="submitDatosEnvio()" type="submit" id="btRegister">Pagar y
+                                finalizar</button>
+                        </div>
+                    </form>
+                </div>
+    </main>
+
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+    <script>
+        function submitDatosEnvio() {
+        var idProductos = localStorage.getItem("idProducto")
+        document.getElementById("inputProductosHiddenDatosEnvio").value = idProductos;
+        document.getElementById("formDatosEnvio").submit();
+    }
+    </script>
+</body>
+
+</html>

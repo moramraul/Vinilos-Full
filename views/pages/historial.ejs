@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <!-- all compras <%=infoCompras%> || 1º compra <%=infoCompras[0]%>  -->
+    <!-- Acceso al 1º primer producto <%=infoCompras[0].productos[0][0]%> -->
+    <script>let dia = "";</script>
+    <main>
+        <div class="container">
+            <% for(let j=0 ; j < infoCompras.length ; j++) { %>
+                <table id="tablaCarrito" class="table align-middle table-dark table-hover ">
+                    <h2>Compra <%=j+1%> </h2>
+                    <script>
+                        dia = '<%=infoCompras[j].created%>'.substring(0, 21);
+                        console.log(dia);
+                    </script>
+                    <h4 id="fecha<%=j%>">Fecha: <%=infoCompras[j].created%>
+                    </h4>
+                     <script>
+                       document.getElementById("fecha<%=j%>").innerText = dia;
+                     </script>
+                    <thead>
+                        <tr>
+                            <th class="col-1" scope="col">
+                                <h3>Nº</h3>
+                            </th>
+                            <th class="col-2 text-center" scope="col">
+                                <h3>Portada</h3>
+                            </th>
+                            <th class="col-2 text-center" scope="col">
+                                <h3>Títulos</h3>
+                            </th>
+                            <th class="col-2 text-center" scope="col">
+                                <h3>Precio</h3>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <script> var total = 0;  </script>
+                        <% for(let i=0 ; i < infoCompras[j].productos.length ; i++) { %>
+                            <tr>
+                                <th scope="row">
+                                    <h4>
+                                        <%= i + 1 %>
+                                    </h4>
+                                </th>
+                                <td class="text-center"><img src="<%=infoCompras[j].productos[i][0].imgUrl %>"
+                                        width="150" height="150">
+                                </td>
+                                <td class="text-center">
+                                    <h4>
+                                        <%=infoCompras[j].productos[i][0].titulo %>
+                                    </h4>
+                                </td>
+                                <td class="text-center">
+                                    <h4>
+                                        <%=infoCompras[j].productos[i][0].precio %>,00 €
+                                            <script>
+
+                                                total = total + parseInt('<%=infoCompras[j].productos[i][0].precio%>')
+
+                                            </script>
+                                    </h4>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td class="text-center">
+                                <h4>Total</h4>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-center">
+                                <h4 id="total<%=j%>"></h4>
+                            </td>
+
+                        </tr>
+                        <script>
+                            document.getElementById("total<%=j%>").innerText = total + ",00 €";
+                        </script>
+                        </tr>
+                    </tfoot>
+                </table>
+                <% } %>
+                    <!-- infoCompras objeto de todas las compras del usuario -->
+
+
+
+
+
+        </div>
+    </main>
+
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>

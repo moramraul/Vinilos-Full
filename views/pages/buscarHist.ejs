@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <main>
+        <!-- Formulario donde se introduce el dni y el mail y busca el historial de compra -->
+        <div class="container">
+            <br>
+            <h4 class="text-center"> Mira tu historial de compra</h4>
+            <br>
+        </div>
+        <div class="container mt-3" id="div-busHisto">
+            <div class="row justify-content-evenly">
+                <div class="col-4 ">
+                </div>
+                <form action="/historialNoLogin" method="POST">
+                    <div class="mb-3">
+                        <label for="busHistoEmail" class="form-label">Introduce tu email</label>
+                        <input type="email" class="form-control" id="busHistoEmail" name="email" required>
+                        <div id="busHisto" class="form-text">Recuerda que tiene que ser el mismo con el que te
+                            registraste.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="busHistoDni" class="form-label">Introduce tu DNI</label>
+                        <input type="text" class="form-control" id="busHistoDni" name="dni" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1" required>He leido y estoy de acuerdo con la privacidad de datos.</label>
+                    </div>
+                    <button type="submit" class="btn btn-outline-secondary bg-dark">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+</html>

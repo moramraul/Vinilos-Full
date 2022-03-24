@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <script>
+            function addProducto(id_vinilo) {
+                var productos = [];
+                if (localStorage.getItem("idProducto") == "") {
+                    localStorage.setItem("idProducto", id_vinilo)
+                } else {
+                    console.log(id_vinilo)
+                    productos.push(localStorage.getItem("idProducto"));
+                    productos.push(id_vinilo);
+                    localStorage.setItem("idProducto", productos);
+                }
+            }
+            async function botonBusqueda() {
+                let generosCheckados = await comprobarCheck();
+                document.getElementById("inputHidden").value = generosCheckados
+                document.getElementById("formBusqueda").submit()
+            }
+
+            function comprobarCheck() {
+                var todosCheck = document.getElementsByClassName("form-check-input")
+                var generosCheckados = []
+                for (let i = 0; i < todosCheck.length; i++) {
+                    if (todosCheck[i].checked) { generosCheckados.push(todosCheck[i].value) }
+                }
+                console.log(generosCheckados)
+                return generosCheckados
+            }
+            async function botonTitulo() {
+                var titulo = await comprobarTitulo()
+                console.log("Esta es la función que coge el input")
+                console.log(titulo)
+                var input = document.getElementById("inputHidden2").value = titulo
+                console.log("Esta es la función que pasa el value")
+                console.log(input)
+                document.getElementById("formBusqueda2").submit()
+            }
+            function comprobarTitulo() {
+                var inputTitulo = document.getElementById("tituloBusqueda").value;
+                return inputTitulo
+            }
+
+        </script>
+
+</head>
+
+<body>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <br>
+        <div class="container ">
+            <div class="row">
+                <div class="d-grid gap-2 d-md-flex ">
+                    <form action="/verBusquedaTitulo" id="formBusqueda2" method="POST"
+                        class="d-flex align-items-end me-auto">
+
+
+                        <input class="form-control me-2" type="text" id="tituloBusqueda" placeholder="Buscar por título"
+                            aria-label="Search">
+                        <input type="hidden" class="form-control" name="tituloIntroducido" value="" id="inputHidden2">
+                        <button class="btn btn-outline-success" onclick="botonTitulo()" type="submit">Buscar</button>
+
+
+                    </form>
+                    <form action="/verBusqueda" id="formBusqueda" method="POST"
+                        class="d-flex align-items-center ms-auto">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Rock">
+                            <label class="form-check-label" for="inlineCheckbox1">Rock</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Jazz">
+                            <label class="form-check-label" for="inlineCheckbox2">Jazz</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Hip Hop">
+                            <label class="form-check-label" for="inlineCheckbox3">Hip Hop</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Blues">
+                            <label class="form-check-label" for="inlineCheckbox3">Blues</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Funk">
+                            <label class="form-check-label" for="inlineCheckbox3">Funk</label>
+                        </div>
+                        <input type="hidden" class="form-control" name="generosCheckados" value="" id="inputHidden">
+                        <button class="btn btn-outline-success" onclick="botonBusqueda()" type="submit">Buscar</button>
+                </form>
+                </div>  
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="row justify-content-around">
+                <% for(let i=0 ; i < infoVinilos.length ; i++) { %>
+                    <div class="col-lg mt-3">
+                        <div class="card" style="width: 18rem;">
+                            <form action="/verProducto" method="POST">
+
+                                <input type="image" class="card-img-top" src=" <%= infoVinilos[i].imgUrl %> "
+                                    alt="Submit Form">
+                                <input type="hidden" name="id_vinilo" value="<%= infoVinilos[i].id_vinilo %>">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= infoVinilos[i].titulo %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= infoVinilos[i].autor %>
+
+                                            <br>
+                                            <%= infoVinilos[i].precio %>,00 €
+                                    </p>
+                                    <input type="button" class="btn btn-outline-secondary bg-dark"
+                                        value="Añadir al carrito"
+                                        onclick="addProducto('<%= infoVinilos[i].id_vinilo %>')">
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+        <div class="container mt-5">
+            <h1>Nuestras últimas incorporaciones</h1>
+            <div class="row justify-content-around">
+                <% for(let j=0 ; j < infoVinilos3.length ; j++) { %>
+                    <div class="col-lg mt-3">
+                        <div class="card" style="width: 18rem;">
+                            <form action="/verProducto" method="POST">
+
+                                <input type="image"  class="card-img-top" src=" <%= infoVinilos3[j].imgUrl %> " alt="Submit Form">
+                                <input type="hidden" name="id_viniloScrap" value="<%= infoVinilos3[j].id_viniloScrap %>">
+                            
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= infoVinilos3[j].titulo %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= infoVinilos3[j].autor %>
+
+                                        <br>
+                                        <%= infoVinilos3[j].precio %> 
+                                    </p>
+                                    <input type="button" class="btn btn-outline-secondary bg-dark" value="Añadir al carrito" onclick="addProducto('<%= infoVinilos3[j].id_viniloScrap %>')">
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+        <div class="container mt-5">
+            <h1>Vinilos de nuestras tiendas amigas</h1>
+            <div class="row justify-content-around">
+
+
+            <% for(let k=0 ; k < infoDiscosScrapeados.length ; k++) { %>
+                <% if (infoDiscosScrapeados[k] !== undefined){ %>
+                                <div class="col-lg mt-3">
+                                <div class="card" style="width: 18rem;">
+
+                                <input type="image" href="#" class="card-img-top" src=" <%= infoDiscosScrapeados[k].imgUrl %> " alt="Submit Form">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= infoDiscosScrapeados[k].titulo %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= infoDiscosScrapeados[k].autor %>
+                                            <br>
+                                            <%= infoDiscosScrapeados[k].ano %>
+                                                <br>
+                                                <%= infoDiscosScrapeados[k].precio %>
+                                    </p>
+                                    <a href=" <%= infoDiscosScrapeados[k].url %> " target=”_blank” class="btn btn-outline-secondary bg-dark">Ver en la web</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                            <% } %>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+    <script>
+        function addProducto(id_vinilo) {
+            var productos = [];
+            if (localStorage.getItem("idProducto") === null) {
+                localStorage.setItem("idProducto", id_vinilo)
+            } else {
+                productos.push(localStorage.getItem("idProducto"));
+                productos.push(id_vinilo);
+                localStorage.setItem("idProducto", productos);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

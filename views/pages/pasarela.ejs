@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+
+<main>
+    <br>
+        <form method="POST" action="/pasarela" id="formEnvio2">
+            <input type="hidden" id="hiddenEnvio2" name="datos" value="">
+            <input type="hidden" id="hiddenEnvio3" name="productos" value="">
+
+        </form>
+        
+</main>
+
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+<script>
+    infoEnviar = '<%-info%>'
+    function seguir(infoEnviar) {
+        let productos = localStorage.getItem("idProducto");
+        document.getElementById("hiddenEnvio3").value = productos
+        document.getElementById("hiddenEnvio2").value = infoEnviar
+        document.getElementById("formEnvio2").submit();
+    }
+    seguir(infoEnviar)
+</script>
+
+</body>
+</html>
+

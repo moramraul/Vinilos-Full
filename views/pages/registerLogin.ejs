@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <script>
+            let validacion = '<%=validation%>'
+            console.log(validacion);
+            
+
+        </script>
+
+</head>
+
+<body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <div class="alert alert-success" role="alert">Registro correcto</div>
+    <div class="alert alert-danger" role="alert"> Hay algun error en algun campo </div>
+    <div class="alert alert-danger" id="existe" role="alert"> Existe Usuario</div>
+    <div class="alert alert-danger" id="noExiste" role="alert"> No está registrado ese correo, por favor registrase</div>
+    <div class="alert alert-danger" id="noPass" role="alert"> Password Incorrecta</div>
+    
+    <script>
+        console.log(validacion);
+        if (validacion == "inicio") {
+            document.getElementsByClassName("alert-success")[0].style.display = "none";
+            document.getElementsByClassName("alert-danger")[0].style.display = "none";
+            document.getElementById("existe").style.display = "none";
+            document.getElementById("noExiste").style.display = "none";
+            document.getElementById("noPass").style.display = "none";
+        }
+        if (validacion == "correcto") {
+            document.getElementsByClassName("alert-danger")[0].style.display = "none";
+            document.getElementById("existe").style.display = "none";
+            document.getElementById("noExiste").style.display = "none";
+            document.getElementById("noPass").style.display = "none";
+        }
+        if (validacion == "incorrecto") {
+            document.getElementsByClassName("alert-success")[0].style.display = "none";
+            document.getElementById("existe").style.display = "none";
+            document.getElementById("noExiste").style.display = "none";
+            document.getElementById("noPass").style.display = "none";
+        }
+        if (validacion == "existe") {
+            document.getElementsByClassName("alert-success")[0].style.display = "none";
+            document.getElementsByClassName("alert-danger")[0].style.display = "none";
+            document.getElementById("noExiste").style.display = "none";
+            document.getElementById("noPass").style.display = "none";
+        }
+        if (validacion == "noExiste") {
+            document.getElementsByClassName("alert-success")[0].style.display = "none";
+            document.getElementsByClassName("alert-danger")[0].style.display = "none";
+            document.getElementById("existe").style.display = "none";
+            document.getElementById("noPass").style.display = "none";
+        }
+        if (validacion == "noPass") {
+            document.getElementsByClassName("alert-success")[0].style.display = "none";
+            document.getElementsByClassName("alert-danger")[0].style.display = "none";
+            document.getElementById("existe").style.display = "none";
+            document.getElementById("noExiste").style.display = "none";
+            
+        }
+
+    </script> 
+
+    <main>
+        <!-- ! FORMULARIOS DE LOGIN Y REGISTER -->
+
+        <div class="container">
+            <br>
+            <h4 class="text-center"> Regístrate o inicia sesión para continuar</h4>
+            <br>
+        </div>
+        <div class="container mt-3" id="div-register">
+            <div class="row justify-content-evenly">
+                <div class="col-4 ">
+                    <form action="/registro" method="POST" id="fmRegister" <!--! ***REGISTER ****-->
+                        <h5>Regístrate</h5>
+
+                        <!--! *** Nombre ***-->
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="nombre" class="input-group-text">Nombre</label>
+                            <input type="text" class="form-control" placeholder="Ej: Juan" name="nombre" id="nombre"
+                                required><br>
+                        </div>
+                        <span></span>
+                        <!-- ! *** Apellidos ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="apellidos" class="input-group-text">Apellidos</label>
+                            <input type="text" class="form-control" placeholder="Ej: Fernández Gómez" name="apellidos"
+                                id="apellidos" required><br>
+                        </div>
+                        <span></span>
+                        <!--! *** Email ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="email" class="input-group-text">Email</label>
+                            <input type="text" class="form-control" placeholder="Ej: Ana@hotmail.com" name="email"
+                                id="emailReg" required><br>
+                        </div>
+                        <span></span>
+                        <!--! *** Password ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="password" class="input-group-text">Password</label>
+                            <input type="password" class="form-control" placeholder="Password" name="password"
+                                id="password1" required><br>
+                        </div>
+                        <span></span>
+                        <!--! *** Repetir Password ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="password2" class="input-group-text">Repetir Password</label>
+                            <input type="password" class="form-control" placeholder="Confirmar Password"
+                                name="password2" id="password2" required><br>
+                        </div>
+                        <span></span> <span></span>
+                        <!--! *** DNI ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="dni" class="input-group-text">DNI</label>
+                            <input type="text" class="form-control" placeholder="Ej: 510698745-X" name="dni" id="dni"
+                                aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <!--! *** Teléfono ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="tlf" class="input-group-text">Teléfono</label>
+                            <input type="text" class="form-control" placeholder="Ej: 695403647" name="tlf" id="tlf"
+                                aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <!--! *** Dirección ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="direccion" class="input-group-text">Dirección</label>
+                            <input type="text" class="form-control" placeholder="Ej: C/ Paco de Lucia nº5"
+                                name="direccion" id="direccion" aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <!--! *** CP ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="cp" class="input-group-text">Código Postal</label>
+                            <input type="text" class="form-control" placeholder="Ej: 28033" name="cp" id="cp"
+                                aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <!--! *** Población ***-->
+
+                        <div class="input-group input-group-sm mb-2 ">
+                            <label for="poblacion" class="input-group-text">Población</label>
+                            <input type="text" class="form-control" placeholder="Ej: Sevilla" name="poblacion"
+                                id="poblacion" aria-describedby="nameHelp" required>
+                        </div>
+                        <span></span>
+
+                        <div class="mb-2">
+                            <button class="btn btn-outline-secondary bg-dark" type="submit"
+                                id="btRegister">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!--! LOGIN -->
+
+                <div class="col-4 ">
+                    <form action="/login" method="POST" id="fmLogin">
+
+                        <h5>Ya tengo cuenta</h5>
+                        <!--! *** Email ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="email2" class="input-group-text">Email</label>
+                            <input type="text" class="form-control" placeholder="Ej: Ana@hotmail.com" name="email2"
+                                id="emailLogin" required><br>
+                        </div>
+                        <span></span>
+                        <!--! *** Password ***-->
+
+                        <div class="input-group input-group-sm mb-2">
+                            <label for="password3" class="input-group-text">Password</label>
+                            <input type="password" class="form-control" placeholder="Password" name="password3"
+                                id="passLogin" required><br>
+                        </div>
+                        <span></span>
+                        <!-- botón de loguear -->
+                        <div class="mb-2">
+                            <input class="btn btn-outline-secondary bg-dark" type="submit" id="btLoguear"
+                                value="Loguear">
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </main>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+</body>
+
+</html>

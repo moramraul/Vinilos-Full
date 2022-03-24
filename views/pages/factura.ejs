@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+
+<main>
+    <br>
+    <br>
+    <div class="container">
+        <h2>Aquí tienes tu factura. Puedes descargartela o imprimirtela.</h2>
+        <br>
+        <h4>Si prefieres recibirla en tu email, escribelo y clica aquí:</h4>
+    </div>
+    <br>
+    <br>
+    <div class="container ">
+        <div class="row text-center">
+            <form method="POST" action="/enviarMail">
+                <label for="email">
+                    <h5>Email: </h5>
+                </label>
+                <input type="email" name="email" placeholder="Introduce tu correo">
+                <br>
+                <br>
+                <label for="password">
+                    <h5>Contraseña: </h5>
+                </label>
+                <input type="password" name="password" placeholder="Introduce la contraseña">
+                <br>
+                <br>
+                <button type="submit" class="btn btn-outline-secondary bg-dark">Enviar</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container justify-content-center">
+        <embed src="/factura_vinilosFull.pdf" width="1400" height="1300" type="application/pdf">
+    </div>
+</main>
+
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
